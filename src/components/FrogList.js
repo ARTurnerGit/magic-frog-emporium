@@ -4,7 +4,10 @@ function FrogList(props) {
   const { adultFrogs, magicFrogs } = props;
   return (
     <ul>
-      <li key="adultFrogs" title="Adult frogs produce 1 frogspawn per second.">
+      <li
+        key="adultFrogs"
+        title="Adult frogs produce 1 frogspawn per 5 seconds."
+      >
         Adult Frogs:{adultFrogs}
       </li>
       {magicFrogs > 0 ?? (
