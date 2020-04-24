@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Header from "./components/Header.js";
+import Cauldron from "./components/Cauldron";
+import FrogList from "./components/FrogList";
+import Upgrades from "./components/Upgrades";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    frogspawn: 10,
+    cauldronPending: 0,
+    adultFrogs: 0,
+    magicFrogs: 0,
+  };
+  // setInterval MDN
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <p>Current frogspawn: {this.state.frogspawn}</p>
+        <button onClick={this.handleTadpoleClick}>
+          Place frogspawn in the cauldron
+        </button>
+        <Cauldron />
+        <FrogList />
+        <Upgrades />
+      </div>
+    );
+  }
 }
 
 export default App;
