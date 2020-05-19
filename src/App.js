@@ -4,7 +4,31 @@ import Header from "./components/Header.js";
 import Cauldron from "./components/Cauldron";
 import FrogList from "./components/FrogList";
 import Upgrades from "./components/Upgrades";
+import { Howl, Howler } from "howler";
 
+const ambience = new Howl({
+  src: ["../resources/ambience.webm", "../resources/ambience.mp3"],
+  autoplay: true,
+  preload: true,
+  volume: 1,
+
+  onload: function () {
+    console.log("ambience loaded!");
+  },
+  onplayerror: function () {
+    ambience.once("unlock", function () {
+      ambience.play();
+    });
+  },
+});
+
+ambience.play();
+
+const ding = new Howl({
+  src: ["../resources/coin.webm", "../resources/coin.wav"],
+  preload: true,
+  volume: 1,
+});
 class App extends React.Component {
   state = {
     frogspawn: 10,
@@ -15,6 +39,10 @@ class App extends React.Component {
   };
 
   handleTadpoleClick = () => {
+    ding.play();
+    ding.on("end", function () {
+      console.log("Finished!");
+    });
     this.state.frogspawn >= 1 &&
       this.setState((currentState) => {
         return {
